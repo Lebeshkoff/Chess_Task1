@@ -8,6 +8,6 @@ namespace Chees
         public Point2D Coordinates { get; private set; }
 
         public abstract IEnumerable<Point2D> GetValidMovements();
-        public abstract void Move();
+        public abstract void Move(Board board);
     }
 }
