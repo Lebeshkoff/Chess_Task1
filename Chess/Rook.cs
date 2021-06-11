@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace Chees
+namespace Chess
 {
-    public class King : Figure
+    public class Rook : Figure
     {
         public override IEnumerable<Point2D> GetValidMovements()
         {

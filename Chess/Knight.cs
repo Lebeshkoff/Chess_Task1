@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Chees
+namespace Chess
 {
     public class Knight : Figure
     {

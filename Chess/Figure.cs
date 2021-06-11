@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Chees
+namespace Chess
 {
     public abstract class Figure
     {
