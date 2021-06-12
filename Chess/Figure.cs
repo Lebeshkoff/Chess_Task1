@@ -5,9 +5,9 @@ namespace Chess
 {
     public abstract class Figure
     {
-        public Point2D Position;
+        public Point2D Position { get; protected set; }
 
-        public abstract IEnumerable<Point2D> GetValidMovements();
-        public abstract void Move(Board board);
+        public abstract IEnumerable<Point2D> GetValidMovements(Board board);
+        public abstract void Move(Point2D position, Board board);
     }
 }

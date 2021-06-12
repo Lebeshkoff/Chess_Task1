@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace Chess
         {
             _isFirstMove = true;
             _color = color;
-            this.Position = position;
+            Position = position;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
@@ -48,16 +49,26 @@ namespace Chess
                 }
                 valMove.Add(new Point2D(Position.X, Position.Y - 1));
             }
-            throw new System.NotImplementedException();
+
+            return valMove;
         }
 
         private bool CheckEnemyFigureInPosition(Point2D position, Board board)
         {
             return (_color == Color.Black ? board.WhitePlayer.figures : board.BlackPlayer.figures).Any(figure => position == figure.Position);
         }
-        public override void Move(Board board)
+        public override void Move(Point2D position, Board board)
         {
-            throw new System.NotImplementedException();
+            foreach (var valPosition in GetValidMovements(board))
+            {
+                if (position == valPosition)
+                {
+                    Position = valPosition;
+                    return;
+                }
+            }
+
+            throw new Exception("No valid move!");
         }
     }
 }

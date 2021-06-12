@@ -8,12 +8,12 @@ namespace Chess
         {
             base.Position = position;
         }
-        public override IEnumerable<Point2D> GetValidMovements()
+        public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
             throw new System.NotImplementedException();
         }
 
-        public override void Move(Board board)
+        public override void Move(Point2D position, Board board)
         {
             throw new System.NotImplementedException();
         }
