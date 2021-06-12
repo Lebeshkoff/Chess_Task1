@@ -9,17 +9,17 @@ namespace Chess
         /// <summary>
         /// Х coordinate
         /// </summary>
-        public double X { get; set; }
+        public int X { get; set; }
         /// <summary>
         /// Y coordinate
         /// </summary>
-        public double Y { get; set; }
+        public int Y { get; set; }
         /// <summary>
         /// 2D point
         /// </summary>
         /// <param name="x">Х coordinate</param>
         /// <param name="y">Y coordinate</param>
-        public Point2D(double x, double y)
+        public Point2D(int x, int y)
         {
             X = x;
             Y = y;
