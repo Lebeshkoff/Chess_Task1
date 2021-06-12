@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Chess
 {
@@ -6,16 +8,43 @@ namespace Chess
     {
         public Knight(Point2D position)
         {
-            base.Position = position;
+            Position = position;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
-            throw new System.NotImplementedException();
+            var valMoves = new List<Point2D>();
+            //Up
+            valMoves.Add(new Point2D(Position.X + 1, Position.Y + 2));
+            valMoves.Add(new Point2D(Position.X - 1, Position.Y + 2));
+            //Down
+            valMoves.Add(new Point2D(Position.X + 1, Position.Y - 2));
+            valMoves.Add(new Point2D(Position.X - 1, Position.Y - 2));
+            //Left
+            valMoves.Add(new Point2D(Position.X + 2, Position.Y + 1));
+            valMoves.Add(new Point2D(Position.X + 2, Position.Y - 1));
+            //Right
+            valMoves.Add(new Point2D(Position.X - 2, Position.Y + 1));
+            valMoves.Add(new Point2D(Position.X - 2, Position.Y - 1));
+            foreach (var valMove in valMoves.Where(valMove => valMove.X > 7 || valMove.Y > 7 || valMove.X < 0 || valMove.Y < 0))
+            {
+                valMoves.Remove(valMove);
+            }
+
+            return valMoves;
         }
 
         public override void Move(Point2D position, Board board)
         {
-            throw new System.NotImplementedException();
+            foreach (var valPosition in GetValidMovements(board))
+            {
+                if (position == valPosition)
+                {
+                    Position = valPosition;
+                    return;
+                }
+            }
+
+            throw new Exception("No valid move!");
         }
     }
 }
