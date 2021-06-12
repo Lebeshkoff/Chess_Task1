@@ -10,7 +10,6 @@ namespace Chess
         private bool _isFirstMove = false;
         public Pawn(Point2D position, Color color)
         {
-            _isFirstMove = true;
             _color = color;
             Position = position;
         }
