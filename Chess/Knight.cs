@@ -6,8 +6,9 @@ namespace Chess
 {
     public class Knight : Figure
     {
-        public Knight(Point2D position)
+        public Knight(Point2D position, Color color)
         {
+            Color = color;
             Position = position;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
@@ -29,11 +30,22 @@ namespace Chess
             {
                 valMoves.Remove(valMove);
             }
-
+            
+            foreach (var figure in Color == Color.White? board.WhitePlayer.figures : board.BlackPlayer.figures) 
+            { 
+                foreach (var valMove in valMoves)
+                {
+                    if (figure.Position == valMove)
+                    {
+                        valMoves.Remove(valMove);
+                    }
+                }
+            }
+            
             return valMoves;
         }
 
-        public override void Move(Point2D position, Board board, Color color)
+        public override void Move(Point2D position, Board board)
         {
             foreach (var valPosition in GetValidMovements(board))
             {

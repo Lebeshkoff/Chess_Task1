@@ -6,8 +6,9 @@ namespace Chess
 {
     public class Bishop : Figure
     {
-        public Bishop(Point2D position)
+        public Bishop(Point2D position, Color color)
         {
+            Color = color;
             Position = position;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
@@ -30,10 +31,18 @@ namespace Chess
                 resList.Add(tempPosition);
                 if (board.BlackPlayer.figures.Any(figure => figure.Position == tempPosition))
                 {
+                    if (Color == Color.Black)
+                    {
+                        resList.Remove(tempPosition);
+                    }
                     return resList;
                 }
                 if (board.WhitePlayer.figures.Any(figure => figure.Position == tempPosition))
                 {
+                    if (Color == Color.White)
+                    {
+                        resList.Remove(tempPosition);
+                    }
                     return resList;
                 }
             }
@@ -41,7 +50,7 @@ namespace Chess
             return resList;
         }
 
-        public override void Move(Point2D position, Board board, Color color)
+        public override void Move(Point2D position, Board board)
         {
             foreach (var valPosition in GetValidMovements(board))
             {
