@@ -8,6 +8,6 @@ namespace Chess
         public Point2D Position { get; protected set; }
 
         public abstract IEnumerable<Point2D> GetValidMovements(Board board);
-        public abstract void Move(Point2D position, Board board);
+        public abstract void Move(Point2D position, Board board, Color color);
     }
 }

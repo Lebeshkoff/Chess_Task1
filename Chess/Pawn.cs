@@ -56,7 +56,7 @@ namespace Chess
         {
             return (_color == Color.Black ? board.WhitePlayer.figures : board.BlackPlayer.figures).Any(figure => position == figure.Position);
         }
-        public override void Move(Point2D position, Board board)
+        public override void Move(Point2D position, Board board, Color color)
         {
             foreach (var valPosition in GetValidMovements(board))
             {

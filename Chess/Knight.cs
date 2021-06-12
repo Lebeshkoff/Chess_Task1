@@ -33,7 +33,7 @@ namespace Chess
             return valMoves;
         }
 
-        public override void Move(Point2D position, Board board)
+        public override void Move(Point2D position, Board board, Color color)
         {
             foreach (var valPosition in GetValidMovements(board))
             {

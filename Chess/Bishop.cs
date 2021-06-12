@@ -27,6 +27,7 @@ namespace Chess
             while (tempPosition.X < 8 && tempPosition.X >= 0 && tempPosition.Y < 8 && tempPosition.Y >= 0)
             {
                 tempPosition += axis;
+                resList.Add(tempPosition);
                 if (board.BlackPlayer.figures.Any(figure => figure.Position == tempPosition))
                 {
                     return resList;
@@ -35,13 +36,12 @@ namespace Chess
                 {
                     return resList;
                 }
-                resList.Add(tempPosition);
             }
 
             return resList;
         }
 
-        public override void Move(Point2D position, Board board)
+        public override void Move(Point2D position, Board board, Color color)
         {
             foreach (var valPosition in GetValidMovements(board))
             {
