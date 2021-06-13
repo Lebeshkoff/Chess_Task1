@@ -4,13 +4,27 @@ using System.Text;
 
 namespace Chess
 {
+    /// <summary>
+    /// Class who controls all game process
+    /// </summary>
     public class Board
     {
+        /// <summary>
+        /// Player who have white figures
+        /// </summary>
         public Player WhitePlayer { get; private set; }
+        /// <summary>
+        /// Player who have black figures
+        /// </summary>
         public Player BlackPlayer { get; private set; }
         
+        /// <summary>
+        /// Player who make step
+        /// </summary>
         private Player _currentPlayer;
-        
+        /// <summary>
+        /// Player who win this game
+        /// </summary>
         public Player Winner { get; private set; } 
         
         public Board()
@@ -20,6 +34,12 @@ namespace Chess
             _currentPlayer = WhitePlayer;
         }
 
+        /// <summary>
+        /// Method who control player steps
+        /// </summary>
+        /// <param name="figurePosition">Figure position</param>
+        /// <param name="movePosition">Move position</param>
+        /// <exception cref="Exception">Rethrow exceptions that arise during the operation of the move methods</exception>
         public void MakeStep(Point2D figurePosition, Point2D movePosition)
         {
             try
@@ -30,10 +50,13 @@ namespace Chess
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw e;
             }
         }
 
+        /// <summary>
+        /// Delete figure who was dead
+        /// </summary>
         private void TakeFigure()
         {
             foreach (var whiteFigure in WhitePlayer.figures)

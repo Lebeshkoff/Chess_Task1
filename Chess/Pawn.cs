@@ -54,6 +54,12 @@ namespace Chess
             return valMoves;
         }
 
+        /// <summary>
+        /// Method who check enemy figures on diagonals for pawn steps
+        /// </summary>
+        /// <param name="position">Diagonal points</param>
+        /// <param name="board">Board controller</param>
+        /// <returns>Boolean</returns>
         private bool CheckEnemyFigureInPosition(Point2D position, Board board)
         {
             return (Color == Color.Black ? board.WhitePlayer.figures : board.BlackPlayer.figures).Any(figure => position == figure.Position);

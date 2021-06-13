@@ -5,18 +5,34 @@ using System.Text;
 
 namespace Chess
 {
+    /// <summary>
+    /// Class who describes chess player
+    /// </summary>
     public class Player
     {
+        /// <summary>
+        /// Set of player figures
+        /// </summary>
         public List<Figure> figures = new List<Figure>();
 
+        /// <summary>
+        /// Color of figures
+        /// </summary>
         public readonly Color color;
 
+        /// <summary>
+        /// Ctor who initialise sets of figures and assigns color
+        /// </summary>
+        /// <param name="color">Figures color</param>
         public Player(Color color)
         {
             this.color = color;
             InitFigures();
         }
 
+        /// <summary>
+        /// Initialise sets of figures depending on color
+        /// </summary>
         private void InitFigures()
         {
             if (color == Color.White)
@@ -51,6 +67,13 @@ namespace Chess
             }
         }
 
+        /// <summary>
+        /// Method who moves the given figure to the given position
+        /// </summary>
+        /// <param name="figurePosition">Figure position</param>
+        /// <param name="movePosition">Move position</param>
+        /// <param name="board">Board controller</param>
+        /// <exception cref="Exception">If you select null figure</exception>
         public void MoveFigure(Point2D figurePosition, Point2D movePosition, Board board)
         {
             Figure movable = null;

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Chess
 {
+    /// <summary>
+    /// Сlass describing a two-dimensional point
+    /// </summary>
     public class Point2D
     {
         /// <summary>
