@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 using Chess;
 
@@ -264,9 +265,33 @@ namespace UnitTests
         }
 
         [Fact]
-        public void TestBoardFunctions()
+        public void TestBoardInvalidFigureException()
         {
             var board = new Board();
+            Assert.Throws<Exception>(() => board.MakeStep(new Point2D(4,4), new Point2D(4,5)));
+        }
+        [Fact]
+        public void TestBoardMoveValid()
+        {
+            var board = new Board();
+            var actual = false;
+            var movePos = new Point2D(0, 3);
+            var figurePos = new Point2D(0, 1);
+            board.MakeStep(figurePos, movePos);
+            foreach (var figure in board.WhitePlayer.figures.Where(figure => figure.Position == movePos))
+            {
+                actual = true;
+            }
+            Assert.True(actual);
+            actual = false;
+            movePos = new Point2D(0, 4);
+            figurePos = new Point2D(0, 6);
+            board.MakeStep(figurePos, movePos);
+            foreach (var figure in board.BlackPlayer.figures.Where(figure => figure.Position == movePos))
+            {
+                actual = true;
+            }
+            Assert.True(actual);
         }
     }
 }
