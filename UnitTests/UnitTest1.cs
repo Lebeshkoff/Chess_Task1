@@ -186,5 +186,87 @@ namespace UnitTests
             //Assert
             Assert.Equal(expected, movePoint == pawn.Position);
         }
+        [Theory]
+        
+        [InlineData(0,0,0,1, Color.White, typeof(Exception))]
+        [InlineData(0,0,1,0, Color.White, typeof(Exception))]
+        public void TestRookMoveException(int pawnPositionX, int pawnPositionY, int movePointX, int movePointY, Color color,Type expected)
+        {
+            //Arrange
+            var board = new Board();
+            var pawn = new Rook(new Point2D(pawnPositionX, pawnPositionY), color);
+            var movePoint = new Point2D(movePointX, movePointY);
+            //Assert
+            Assert.Throws(expected, () => pawn.Move(movePoint, board));
+        }
+
+        [Theory]
+        [InlineData(0,1,0,5, Color.White, true)]
+        [InlineData(0,2,6,2, Color.White, true)]
+        [InlineData(1,5,5,4, Color.Black, false)]
+        [InlineData(1,6,2,4, Color.Black, false)]
+        
+        public void TestRookMove(int pawnPositionX, int pawnPositionY, int movePointX, int movePointY, Color color, bool expected)
+        {
+            //Arrange
+            var board = new Board();
+            var pawn = new Rook(new Point2D(pawnPositionX, pawnPositionY), color);
+            var movePoint = new Point2D(movePointX, movePointY);
+            //Act
+            try
+            {
+                pawn.Move(movePoint, board);
+            }
+            catch
+            {
+                // ignored
+            }
+            //Assert
+            Assert.Equal(expected, movePoint == pawn.Position);
+        }
+        
+        [Theory]
+        [InlineData(5,2,6,4, Color.White, true)]
+        [InlineData(5,2,6,0, Color.White, false)]
+        [InlineData(5,5,6,3, Color.Black, true)]
+        [InlineData(5,5,1,3, Color.Black, false)]
+        
+        public void TestKnightMove(int pawnPositionX, int pawnPositionY, int movePointX, int movePointY, Color color, bool expected)
+        {
+            //Arrange
+            var board = new Board();
+            var pawn = new Knight(new Point2D(pawnPositionX, pawnPositionY), color);
+            var movePoint = new Point2D(movePointX, movePointY);
+            //Act
+            try
+            {
+                pawn.Move(movePoint, board);
+            }
+            catch
+            {
+                // ignored
+            }
+            //Assert
+            Assert.Equal(expected, movePoint == pawn.Position);
+        }
+        [Theory]
+        
+        [InlineData(5,0,7,1, Color.White, typeof(Exception))]
+        [InlineData(5,7,7,6, Color.Black, typeof(Exception))]
+        public void TestKnightMoveException(int pawnPositionX, int pawnPositionY, int movePointX, int movePointY, Color color,Type expected)
+        {
+            //Arrange
+            var board = new Board();
+            var pawn = new Knight(new Point2D(pawnPositionX, pawnPositionY), color);
+            var movePoint = new Point2D(movePointX, movePointY);
+            //Assert
+            Assert.Throws(expected, () => pawn.Move(movePoint, board));
+        }
+
+        [Fact]
+        public void TestBoardFunctions()
+        {
+            var board = new Board();
+        }
     }
 }
