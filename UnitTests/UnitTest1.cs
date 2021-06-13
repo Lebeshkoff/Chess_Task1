@@ -145,5 +145,46 @@ namespace UnitTests
             //Assert
             Assert.Equal(expected, movePoint == pawn.Position);
         }
+        
+        [Theory]
+        
+        [InlineData(0,0,1,1, Color.White, typeof(Exception))]
+        [InlineData(0,1,6,5, Color.White, typeof(Exception))]
+        [InlineData(0,7,7,0, Color.Black, typeof(Exception))]
+        [InlineData(0,1,6,6, Color.Black, typeof(Exception))]
+        public void TestQueenMoveException(int pawnPositionX, int pawnPositionY, int movePointX, int movePointY, Color color,Type expected)
+        {
+            //Arrange
+            var board = new Board();
+            var pawn = new Queen(new Point2D(pawnPositionX, pawnPositionY), color);
+            var movePoint = new Point2D(movePointX, movePointY);
+            //Assert
+            Assert.Throws(expected, () => pawn.Move(movePoint, board));
+        }
+
+        [Theory]
+        [InlineData(0,0,1,1, Color.White, false)]
+        [InlineData(1,2,2,3, Color.White, true)]
+        [InlineData(1,5,0,4, Color.Black, true)]
+        [InlineData(1,6,2,4, Color.Black, false)]
+        
+        public void TestQueenMove(int pawnPositionX, int pawnPositionY, int movePointX, int movePointY, Color color, bool expected)
+        {
+            //Arrange
+            var board = new Board();
+            var pawn = new Queen(new Point2D(pawnPositionX, pawnPositionY), color);
+            var movePoint = new Point2D(movePointX, movePointY);
+            //Act
+            try
+            {
+                pawn.Move(movePoint, board);
+            }
+            catch
+            {
+                // ignored
+            }
+            //Assert
+            Assert.Equal(expected, movePoint == pawn.Position);
+        }
     }
 }

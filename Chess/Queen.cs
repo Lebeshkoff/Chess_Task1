@@ -31,7 +31,8 @@ namespace Chess
             var tempPosition = Position; 
             while (tempPosition.X < 8 && tempPosition.X >= 0 && tempPosition.Y < 8 && tempPosition.Y >= 0)
             {
-                tempPosition += axis;
+                tempPosition = tempPosition + axis;
+                resList.Add(tempPosition);
                 if (board.BlackPlayer.figures.Any(figure => figure.Position == tempPosition))
                 {
                     if (Color == Color.Black)
@@ -48,7 +49,7 @@ namespace Chess
                     }
                     return resList;
                 }
-                resList.Add(tempPosition);
+                
             }
 
             return resList;
