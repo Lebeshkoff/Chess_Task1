@@ -23,11 +23,11 @@ namespace Chess
         /// <summary>
         /// Ctor which allows you to copy the figure
         /// </summary>
-        /// <param name="king">Сopied</param>
-        public King(King king)
+        /// <param name="figure">Сopied</param>
+        public King(Figure figure)
         {
-            Position = king.Position;
-            Color = king.Color;
+            Position = figure.Position;
+            Color = figure.Color;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {

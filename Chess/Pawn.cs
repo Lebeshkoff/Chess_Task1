@@ -27,10 +27,10 @@ namespace Chess
         /// Ctor which allows you to copy the figure
         /// </summary>
         /// <param name="pawn">Сopied</param>
-        public Pawn(Pawn pawn)
+        public Pawn(Figure figure)
         {
-            Position = pawn.Position;
-            Color = pawn.Color;
+            Position = figure.Position;
+            Color = figure.Color;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
