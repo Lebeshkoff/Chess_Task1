@@ -47,7 +47,25 @@ namespace Chess
                 figures.Add(new Queen(new Point2D(3, 7), _color));
                 figures.Add(new King(new Point2D(4, 7), _color));
             }
-            //TODO: creating a set of figures for the player (black & white) different coordinates
+        }
+
+        public void MoveFigure(Point2D figurePosition, Point2D movePosition, Board board)
+        {
+            Figure movable = null;
+            foreach (var figure in figures)
+            {
+                if (figure.Position == figurePosition)
+                {
+                    movable = figure;
+                    break;
+                }
+            }
+
+            if (movable == null)
+            {
+                throw new Exception("In selected position there are no figure!");
+            }
+            movable.Move(movePosition, board);
         }
     }
 }
