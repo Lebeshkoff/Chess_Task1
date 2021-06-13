@@ -4,12 +4,30 @@ using System.Linq;
 
 namespace Chess
 {
+    /// <summary>
+    /// Knight figure
+    /// </summary>
     public class Knight : Figure
     {
+        /// <summary>
+        ///  Initialise figure
+        /// </summary>
+        /// <param name="position">Start position</param>
+        /// <param name="color">Color</param>
         public Knight(Point2D position, Color color)
         {
             Color = color;
             Position = position;
+        }
+        
+        /// <summary>
+        /// Ctor which allows you to copy the figure
+        /// </summary>
+        /// <param name="knight">Сopied</param>
+        public Knight(Knight knight)
+        {
+            Position = knight.Position;
+            Color = knight.Color;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {

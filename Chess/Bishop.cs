@@ -4,12 +4,30 @@ using System.Linq;
 
 namespace Chess
 {
+    /// <summary>
+    /// Bishop figure
+    /// </summary>
     public class Bishop : Figure
     {
+        /// <summary>
+        ///  Initialise figure
+        /// </summary>
+        /// <param name="position">Start position</param>
+        /// <param name="color">Color</param>
         public Bishop(Point2D position, Color color)
         {
             Color = color;
             Position = position;
+        }
+
+        /// <summary>
+        /// Ctor which allows you to copy the figure
+        /// </summary>
+        /// <param name="bishop">Сopied</param>
+        public Bishop(Bishop bishop)
+        {
+            Position = bishop.Position;
+            Color = bishop.Color;
         }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {

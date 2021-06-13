@@ -4,16 +4,34 @@ using System.Linq;
 
 namespace Chess
 {
+    /// <summary>
+    /// Pawn figure
+    /// </summary>
     public class Pawn : Figure
     {
-        private bool _isFirstMove = true;
+        private bool _isFirstMove = false;
 
+        /// <summary>
+        ///  Initialise figure
+        /// </summary>
+        /// <param name="position">Start position</param>
+        /// <param name="color">Color</param>
         public Pawn(Point2D position, Color color)
         {
+            _isFirstMove = true;
             Color = color;
             Position = position;
         }
 
+        /// <summary>
+        /// Ctor which allows you to copy the figure
+        /// </summary>
+        /// <param name="pawn">Сopied</param>
+        public Pawn(Pawn pawn)
+        {
+            Position = pawn.Position;
+            Color = pawn.Color;
+        }
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
             var valMoves = new List<Point2D>();

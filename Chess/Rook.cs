@@ -4,13 +4,32 @@ using System.Linq;
 
 namespace Chess
 {
+    /// <summary>
+    /// Rook figure
+    /// </summary>
     public class Rook : Figure
     {
+        /// <summary>
+        ///  Initialise figure
+        /// </summary>
+        /// <param name="position">Start position</param>
+        /// <param name="color">Color</param>
         public Rook(Point2D position, Color color)
         {
             Color = color;
             Position = position;
         }
+        
+        /// <summary>
+        /// Ctor which allows you to copy the figure
+        /// </summary>
+        /// <param name="rook">Сopied</param>
+        public Rook(Rook rook)
+        {
+            Position = rook.Position;
+            Color = rook.Color;
+        }
+        
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
             var valMoves = new List<Point2D>();
