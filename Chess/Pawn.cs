@@ -6,14 +6,14 @@ namespace Chess
 {
     public class Pawn : Figure
     {
-        private bool _isFirstMove = false;
-        
+        private bool _isFirstMove = true;
+
         public Pawn(Point2D position, Color color)
         {
             Color = color;
             Position = position;
         }
-        
+
         public override IEnumerable<Point2D> GetValidMovements(Board board)
         {
             var valMoves = new List<Point2D>();
@@ -22,6 +22,7 @@ namespace Chess
                 if (_isFirstMove)
                 {
                     valMoves.Add(new Point2D(Position.X, Position.Y + 2));
+                    _isFirstMove = false;
                 }
                 if (CheckEnemyFigureInPosition(new Point2D(Position.X + 1, Position.Y + 1), board))
                 {
@@ -38,6 +39,7 @@ namespace Chess
                 if (_isFirstMove)
                 {
                     valMoves.Add(new Point2D(Position.X, Position.Y - 2));
+                    _isFirstMove = false;
                 }
                 if (CheckEnemyFigureInPosition(new Point2D(Position.X - 1, Position.Y - 1), board))
                 {
