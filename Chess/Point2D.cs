@@ -29,5 +29,22 @@ namespace Chess
         {
             return new Point2D(point1.X + point2.X, point1.Y + point2.X);
         }
+        
+        public static bool operator ==(Point2D point1, Point2D point2)
+        {
+            return point1.X == point2.X && point1.Y == point2.Y;
+        }
+
+        public static bool operator !=(Point2D point1, Point2D point2)
+        {
+            return !(point1 == point2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj == null) return false;
+            if (!(obj is Point2D)) return false;
+            return this.X == ((Point2D) obj).X && this.Y == ((Point2D) obj).Y;
+        }
     }
 }
