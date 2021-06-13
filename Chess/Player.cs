@@ -91,6 +91,7 @@ namespace Chess
                 throw new Exception("In selected position there are no figure!");
             }
             movable.Move(movePosition, board);
+            Logger.AddActionToLog(this.ToString() + " Figure: " + movable.ToString() + " Move to: " + movePosition);
         }
         
         public override bool Equals(object obj)

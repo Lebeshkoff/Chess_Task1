@@ -50,6 +50,7 @@ namespace Chess
             }
             catch (Exception e)
             {
+                Logger.AddActionToLog(_currentPlayer.ToString() + e.Message);
                 throw e;
             }
         }
@@ -67,11 +68,13 @@ namespace Chess
                     {
                         if (_currentPlayer.color == Color.White)
                         {
+                            Logger.AddActionToLog(_currentPlayer.ToString() + " Take: " + blackFigure);
                             BlackPlayer.figures.Remove(blackFigure);
                             return;
                         }
                         else
                         {
+                            Logger.AddActionToLog(_currentPlayer.ToString() + " Take: " + whiteFigure);
                             WhitePlayer.figures.Remove(whiteFigure);
                             return;
                         }
@@ -79,7 +82,22 @@ namespace Chess
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Method that when a pawn reaches the edge of the board along the Y axis, it is replaced by a bishop
+        /// </summary>
+        private void PawnTransformationToBishop()
+        {
+            foreach (var figure in _currentPlayer.figures)
+            {
+                if (figure is Pawn && figure.Position.Y == 7 || figure.Position.Y == 0)
+                {
+                    _currentPlayer.figures.Add(new Bishop(figure));
+                    _currentPlayer.figures.Remove(figure);
+                    Logger.AddActionToLog(_currentPlayer.ToString() + " Transform: " + figure.ToString());
+                }
+            }
+        }
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
