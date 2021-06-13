@@ -53,5 +53,22 @@ namespace Chess
 
             return resList;
         }
+        
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj as Rook == null) return false;
+            return this.Position == ((Rook) obj).Position && this.Color == ((Rook) obj).Color;
+        }
+
+        public override int GetHashCode()
+        {
+            return Position.X.GetHashCode() ^ Position.Y.GetHashCode() ^ Color.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Rook {Position: " + Position.ToString() + " Color: " + Color.ToString() + " }";
+        }
     }
 }

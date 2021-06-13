@@ -49,5 +49,22 @@ namespace Chess
 
             return resList;
         }
+        
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj as Bishop == null) return false;
+            return this.Position == ((Bishop) obj).Position && this.Color == ((Bishop) obj).Color;
+        }
+
+        public override int GetHashCode()
+        {
+            return Position.X.GetHashCode() ^ Position.Y.GetHashCode() ^ Color.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Bishop {Position: " + Position.ToString() + " Color: " + Color.ToString() + " }";
+        }
     }
 } 

@@ -58,5 +58,22 @@ namespace Chess
         {
             return (Color == Color.Black ? board.WhitePlayer.figures : board.BlackPlayer.figures).Any(figure => position == figure.Position);
         }
+        
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj as Pawn == null) return false;
+            return this.Position == ((Pawn) obj).Position && this.Color == ((Pawn) obj).Color && this._isFirstMove == ((Pawn) obj)._isFirstMove;
+        }
+
+        public override int GetHashCode()
+        {
+            return Position.X.GetHashCode() ^ Position.Y.GetHashCode() ^ Color.GetHashCode() ^ _isFirstMove.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Pawn {Position: " + Position.ToString() + " Color: " + Color.ToString() + " IsFirstMove: " + _isFirstMove.ToString() +" }";
+        }
     }
 }

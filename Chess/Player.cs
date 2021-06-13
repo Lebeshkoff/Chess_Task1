@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Chess
@@ -67,6 +68,23 @@ namespace Chess
                 throw new Exception("In selected position there are no figure!");
             }
             movable.Move(movePosition, board);
+        }
+        
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj as Player == null) return false;
+            return this.color == ((Player) obj).color && this.figures.SequenceEqual(((Player) obj).figures);
+        }
+
+        public override int GetHashCode()
+        {
+            return color.GetHashCode() ^ figures.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Player {Color: " + color.ToString() + " Figures: " + figures.ToString() + " }";
         }
     }
 }

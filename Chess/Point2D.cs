@@ -46,5 +46,14 @@ namespace Chess
             if (!(obj is Point2D)) return false;
             return this.X == ((Point2D) obj).X && this.Y == ((Point2D) obj).Y;
         }
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() ^ Y.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Point2D {X: " + X.ToString() + " Y: " + Y.ToString() + " }";
+        }
     }
 }

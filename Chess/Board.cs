@@ -57,5 +57,27 @@ namespace Chess
             }
         }
         
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj as Board == null) return false;
+            return this.WhitePlayer == ((Board) obj).WhitePlayer 
+                   && this.BlackPlayer == ((Board) obj).BlackPlayer 
+                   && this.Winner == ((Board) obj).Winner 
+                   && this._currentPlayer == ((Board) obj)._currentPlayer;
+        }
+
+        public override int GetHashCode()
+        {
+            return WhitePlayer.GetHashCode() ^ BlackPlayer.GetHashCode() ^ Winner.GetHashCode() ^
+                   _currentPlayer.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Board {Player1: " + WhitePlayer.ToString() + " Player2: " + WhitePlayer.ToString() + " Winner: " +
+                   Winner.ToString() + " Current player: " + _currentPlayer.ToString() + " }";
+        }
+        
     }
 }

@@ -49,5 +49,22 @@ namespace Chess
             
             return valMoves;
         }
+        
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj as Knight == null) return false;
+            return this.Position == ((Knight) obj).Position && this.Color == ((Knight) obj).Color;
+        }
+
+        public override int GetHashCode()
+        {
+            return Position.X.GetHashCode() ^ Position.Y.GetHashCode() ^ Color.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Knight {Position: " + Position.ToString() + " Color: " + Color.ToString() + " }";
+        }
     }
 }
