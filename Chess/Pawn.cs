@@ -51,37 +51,12 @@ namespace Chess
                 }
                 valMoves.Add(new Point2D(Position.X, Position.Y - 1));
             }
-            
-            foreach (var figure in Color == Color.White? board.WhitePlayer.figures : board.BlackPlayer.figures) 
-            { 
-                foreach (var valMove in valMoves)
-                {
-                    if (figure.Position == valMove)
-                    {
-                        valMoves.Remove(valMove);
-                    }
-                }
-            }
             return valMoves;
         }
 
         private bool CheckEnemyFigureInPosition(Point2D position, Board board)
         {
             return (Color == Color.Black ? board.WhitePlayer.figures : board.BlackPlayer.figures).Any(figure => position == figure.Position);
-        }
-        
-        public override void Move(Point2D position, Board board)
-        {
-            foreach (var valPosition in GetValidMovements(board))
-            {
-                if (position == valPosition)
-                {
-                    Position = valPosition;
-                    return;
-                }
-            }
-
-            throw new Exception("No valid move!");
         }
     }
 }

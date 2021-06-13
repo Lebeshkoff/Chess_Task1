@@ -49,19 +49,5 @@ namespace Chess
 
             return resList;
         }
-
-        public override void Move(Point2D position, Board board)
-        {
-            foreach (var valPosition in GetValidMovements(board))
-            {
-                if (position == valPosition)
-                {
-                    Position = valPosition;
-                    return;
-                }
-            }
-
-            throw new Exception("No valid move!");
-        }
     }
 } 

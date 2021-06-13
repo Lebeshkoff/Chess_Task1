@@ -10,6 +10,20 @@ namespace Chess
         public Color Color { get; protected set; }
 
         public abstract IEnumerable<Point2D> GetValidMovements(Board board);
-        public abstract void Move(Point2D position, Board board);
+        
+        public virtual void Move(Point2D position, Board board)
+        {
+            var valPositions = GetValidMovements(board);
+            foreach (var valPosition in valPositions)
+            {
+                if (position == valPosition)
+                {
+                    Position = valPosition;
+                    return;
+                }
+            }
+
+            throw new Exception("No valid move!");
+        }
     }
 }
